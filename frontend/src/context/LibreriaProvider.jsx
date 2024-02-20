@@ -11,6 +11,33 @@ const LibreriaProvider = ({ children }) => {
 
   const [usuarios,setUsuarios] = useState()
 
+  const queueLibro = async (libro,user)=>{
+    
+  
+
+      try {
+        
+        const token = localStorage.getItem("token");
+        const response = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/api/notificacion/${libro.id}`,
+          
+          {
+              libro
+          },
+          {
+            headers: {
+              Accept: "application/json",
+              "X-Requested-With": "XMLHttpRequest",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        toast.success('En el caso de ser el primero te avisaremos por correo cuando este disponible.')
+      } catch (error) {
+        toast.warning(error.response.data.message)
+        
+      }
+  }
   const prestarLibroAdmin = async(libro) => {
       const {user_id,libro_id} = libro
 
@@ -386,7 +413,8 @@ const LibreriaProvider = ({ children }) => {
         reservas,
         setReservas,
         prestarLibroAdmin,
-        eliminarReservaAdmin
+        eliminarReservaAdmin,
+        queueLibro
       }}
     >
       {children}

@@ -239,7 +239,7 @@ class ReservaController extends Controller
 
                 $suscripcion=Suscripcion::where('libro_id',$libro->id)->where('estado',1)->orderBy('id','asc')->with('user')->first();
                 //
-                return $suscripcion;
+
                 if($suscripcion){
                     $this->enviarCorreo($suscripcion->user->email, $libro->nombre);
                     $suscripcion->estado = 0;
