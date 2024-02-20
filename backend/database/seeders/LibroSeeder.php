@@ -238,6 +238,8 @@ class LibroSeeder extends Seeder
         $userAdmin = new User();
         $userAdmin->name = 'Administrador';
         $userAdmin->email = 'admin@admin.com';
+        $userAdmin->role = 1;
+
         $userAdmin->password = bcrypt('123456');
         $userAdmin->save();
     }
