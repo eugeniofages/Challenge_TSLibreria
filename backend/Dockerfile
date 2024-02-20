@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
 # Copiar el código fuente de la aplicación
 WORKDIR /var/www/html
 COPY ./backend .
-
+WORKDIR /var/www/html
 # Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -56,7 +56,8 @@ RUN docker-php-ext-install \
     mbstring \
     opcache \
     pdo_mysql \
-    zip \
+    zip
 
-# Exponer el puerto 80
 EXPOSE 80
+
+
