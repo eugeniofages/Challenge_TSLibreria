@@ -22,11 +22,11 @@ RUN apt-get update && apt-get install -y \
 
 # Copiar el código fuente de la aplicación
 WORKDIR /var/www/html
-COPY ./backend .
+COPY ./ ./
 WORKDIR /var/www/html
 # Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
+RUN composer install
 # Habilitar mod_rewrite y mod_headers
 RUN a2enmod rewrite headers
 
