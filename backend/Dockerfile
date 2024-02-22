@@ -26,6 +26,7 @@ COPY ./ ./
 WORKDIR /var/www/html
 # Instalar Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+WORKDIR /var/www/html
 RUN composer install
 # Habilitar mod_rewrite y mod_headers
 RUN a2enmod rewrite headers

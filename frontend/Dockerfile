@@ -3,9 +3,8 @@
 FROM node:20.11.1 AS frontend
 
 WORKDIR /app/frontend
-
 COPY ./ ./
-
+RUN rm -rf    ./node_modules
 RUN npm install
 EXPOSE 5173
 
